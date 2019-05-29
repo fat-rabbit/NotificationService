@@ -18,6 +18,7 @@ namespace NotificationService
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<ApplicationDbContext>(context => { context.UseInMemoryDatabase(databaseName: "Messages"); });
         }
 
@@ -26,6 +27,10 @@ namespace NotificationService
             loggerFactory.AddFile("Logs/{Date}.txt");
             loggerFactory.AddDebug();
 
+            app.UseCors(builder => builder.AllowAnyOrigin()
+                                        .AllowAnyMethod()
+                                        .AllowCredentials()
+                                        .AllowAnyHeader());
             app.UseOwin().UseNancy();
         }
     }

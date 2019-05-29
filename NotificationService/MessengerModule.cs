@@ -16,7 +16,7 @@ namespace NotificationService
                 var message = this.Bind<ExpectedMessage>();
                 var response = await _service.SendMessageAsync(message);
 
-                return $"response: {response}";
+                return response.ToString();
             });
         }
     }
