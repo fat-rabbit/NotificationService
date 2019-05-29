@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <input placeholder="Service url" type="text" name="subject" [(ngModel)]="url"/>
+    <input placeholder="Subject" type="text" name="subject" [(ngModel)]="subject"/>
+    <input placeholder="Body" type="text" name="body" [(ngModel)]="body"/>
+    <input placeholder="Add recipeint..." type="text" name="recipient" [(ngModel)]="recipient"/>
+    <button type="button" (click)="onAddRecipient(recipient)">Add</button>
+    <button type="submit">Submit</button>
+    <ul>
+      <li *ngFor="let r of recipients">{{ r }}</li>
+    </ul>
+  </form>
+  <h4 *ngIf="messageId">Sent. Message id: {{ messageId }} </h4>
+</div>

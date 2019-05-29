@@ -11,19 +11,7 @@ namespace NotificationService.DTO
         public int Id { get; set; }
         public string Subject { get; set; }
         public string Body { get; set; }
-        public string Recipients { get; set; }
-        [NotMapped]
-        public List<string> RecipientsList
-        {
-            get
-            {
-                return Recipients.Split(',').ToList();
-            }
-            set
-            {
-                Recipients = (value != null) ? string.Join(',', value) : "";
-            }
-        }
+        public List<string> Recipients { get; set; }
         public bool IsSent { get; set; } = true;
     }
 }

@@ -25,7 +25,7 @@ namespace NotificationService.Services
         public async Task<int> SendMessageAsync(ExpectedMessage messageDTO)
         {
             var messageId = _repository.SaveMessage(messageDTO);
-            await SendNotificationsToAll(messageDTO.RecipientsList, messageDTO.Body);
+            await SendNotificationsToAll(messageDTO.Recipients, messageDTO.Body);
 
             return messageId;
         }
