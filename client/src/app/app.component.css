@@ -1,0 +1,13 @@
+.wrapper {
+    width: 20%;
+    margin: 5% auto;
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+}
+
+input {
+    margin: 5px 0;
+}

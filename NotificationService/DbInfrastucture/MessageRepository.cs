@@ -30,7 +30,7 @@ namespace NotificationService.DbInfrastucture
             };
 
             int messageId = SaveMessage(message);
-            SaveMessageStatus(messageDTO.RecipientsList, messageId);
+            SaveMessageStatus(messageDTO.Recipients, messageId);
 
             _context.SaveChanges();
             return messageId;
