@@ -25,18 +25,12 @@ namespace NotificationService.Services
         public async Task<int> SendMessageAsync(ExpectedMessage messageDTO)
         {
             var messageId = _repository.SaveMessage(messageDTO);
-            await SendNotificationsToAll(messageDTO.Recipients, messageDTO.Body);
-
+            var sendMessages = messageDTO.recipients
+                .Select(recipient => 
+                        SendNotification(new MessageDTO(recipient, messageDTO.body)));
+            await Task.WhenAll(sendMessages);
+            
             return messageId;
-        }
-
-        private async Task SendNotificationsToAll(List<string> recipients, string body)
-        {
-            foreach (var recipient in recipients)
-            {
-                var messageDto = new MessageDTO(recipient, body);
-                await SendNotification(messageDto);
-            }
         }
 
         private async Task SendNotification(MessageDTO message)
